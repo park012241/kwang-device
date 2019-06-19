@@ -1,0 +1,30 @@
+{
+  "name": "kwang-device",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node .",
+    "prestart": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/park012241/kwang-device.git"
+  },
+  "author": "Joosung Park <admin@slowmotion.dev>",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/park012241/kwang-device/issues"
+  },
+  "homepage": "https://github.com/park012241/kwang-device#readme",
+  "dependencies": {
+    "pigpio": "^1.2.2"
+  },
+  "devDependencies": {
+    "typescript": "^3.5.1",
+    "tslint": "^5.17.0",
+    "@types/pigpio": "^1.2.1"
+  }
+}
