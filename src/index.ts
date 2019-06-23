@@ -1,5 +1,12 @@
 import axios from 'axios';
+import gpio from 'pigpio';
 import {servo, testLED, trigger} from './pin';
+
+gpio.initialize();
+
+process.on('exit', () => {
+    gpio.terminate();
+});
 
 let isOn = false;
 trigger.addListener('interrupt', async () => {
