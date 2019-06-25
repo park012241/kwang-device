@@ -12,8 +12,13 @@ let isOn = false;
 trigger.addListener('interrupt', async () => {
     isOn = !isOn;
     testLED.digitalWrite(isOn ? 1 : 0);
-    servo.servoWrite(45);
-    servo.servoWrite(0);
+    try {
+        servo.servoWrite(45);
+        servo.servoWrite(0);
+    } catch (e) {
+        // tslint:disable-next-line:no-console
+        console.error(e);
+    }
 
     await axios.post<undefined>('https://kwang-server.herokuapp.com/newKwang', {
         deviceId: 'TEST',
