@@ -1,16 +1,12 @@
 import {Gpio} from 'pigpio';
 
-const trigger = new Gpio(18, {
+const trigger = new Gpio(2, {
     edge: Gpio.FALLING_EDGE,
     mode: Gpio.INPUT,
 });
 
-const servo = new Gpio(17, {
+const servo = new Gpio(3, {
     mode: Gpio.OUTPUT,
 });
 
-const testLED = new Gpio(21, {
-    mode: Gpio.OUTPUT,
-});
-
-export {trigger, servo, testLED};
+export {trigger, servo};
