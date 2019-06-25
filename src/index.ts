@@ -15,5 +15,7 @@ trigger.addListener('interrupt', async () => {
     servo.servoWrite(45);
     servo.servoWrite(0);
 
-    await axios.get<undefined>('https://google.com/');
+    await axios.post<undefined>('https://kwang-server.herokuapp.com/newKwang', {
+        deviceId: 'TEST',
+    });
 });
