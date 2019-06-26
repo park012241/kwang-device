@@ -14,6 +14,8 @@ gpio.configureClock(1, gpio.CLOCK_PWM);
 process.on('exit', gpio.terminate);
 process.on('SIGINT', gpio.terminate);
 
+servo.servoWrite(1000);
+
 trigger.addListener('interrupt', async () => {
     try {
         servo.servoWrite(800);
