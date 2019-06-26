@@ -3,6 +3,7 @@ import gpio from 'pigpio';
 import {servo, trigger} from './pin';
 
 gpio.initialize();
+gpio.configureClock(1, gpio.CLOCK_PWM);
 
 process.on('exit', () => {
     gpio.terminate();
