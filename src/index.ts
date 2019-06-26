@@ -2,6 +2,12 @@ import axios from 'axios';
 import gpio from 'pigpio';
 import {servo, trigger} from './pin';
 
+const delay = (ms: number) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+};
+
 gpio.initialize();
 gpio.configureClock(1, gpio.CLOCK_PWM);
 
@@ -11,7 +17,9 @@ process.on('SIGINT', gpio.terminate);
 trigger.addListener('interrupt', async () => {
     try {
         servo.servoWrite(800);
+        await delay(100);
         servo.servoWrite(1000);
+        await delay(100);
         servo.servoWrite(0);
     } catch (e) {
         // tslint:disable-next-line:no-console
