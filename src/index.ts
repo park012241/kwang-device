@@ -19,19 +19,29 @@ process.on('SIGINT', () => {
 
 servo.servoWrite(1000);
 
-trigger.addListener('interrupt', async () => {
-    try {
-        servo.servoWrite(500);
-        await delay(100);
-        servo.servoWrite(1000);
-        await delay(100);
-        servo.servoWrite(0);
-    } catch (e) {
-        // tslint:disable-next-line:no-console
-        console.error(e);
-    }
+let processing = false;
 
-    await axios.post<undefined>('https://kwang-server.herokuapp.com/newKwang', {
-        deviceId: 'TEST',
-    });
+trigger.addListener('interrupt', async () => {
+    await Promise.all([
+        (async () => {
+            if (!processing) {
+                processing = true;
+                try {
+                    servo.servoWrite(500);
+                    await delay(100);
+                    servo.servoWrite(1000);
+                    await delay(100);
+                    servo.servoWrite(0);
+                } catch (e) {
+                    // tslint:disable-next-line:no-console
+                    console.error(e);
+                }
+                await delay(1000);
+                processing = false;
+            }
+        }),
+        axios.post<undefined>('https://kwang-server.herokuapp.com/newKwang', {
+            deviceId: 'TEST',
+        })
+    ]);
 });
