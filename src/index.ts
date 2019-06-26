@@ -5,9 +5,8 @@ import {servo, trigger} from './pin';
 gpio.initialize();
 gpio.configureClock(1, gpio.CLOCK_PWM);
 
-process.on('exit', () => {
-    gpio.terminate();
-});
+process.on('exit', gpio.terminate);
+process.on('SIGINT', gpio.terminate);
 
 trigger.addListener('interrupt', async () => {
     try {
