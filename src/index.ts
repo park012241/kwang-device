@@ -21,7 +21,7 @@ servo.servoWrite(1000);
 
 trigger.addListener('interrupt', async () => {
     try {
-        servo.servoWrite(1800);
+        servo.servoWrite(500);
         await delay(100);
         servo.servoWrite(1000);
         await delay(100);
