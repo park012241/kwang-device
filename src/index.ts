@@ -18,7 +18,7 @@ trigger.addListener('interrupt', async () => {
         servo.servoWrite(500);
         await delay(100);
         servo.servoWrite(1000);
-        await delay(1000);
+        await delay(900);
         processing = false;
     }
     await axios.post<undefined>('https://kwang-server.herokuapp.com/newKwang', {
