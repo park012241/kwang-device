@@ -1,7 +1,6 @@
 import {Gpio} from 'pigpio';
 
 const trigger = new Gpio(15, {
-    edge: Gpio.FALLING_EDGE,
     mode: Gpio.INPUT,
 });
 

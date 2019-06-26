@@ -18,7 +18,7 @@ trigger.addListener('interrupt', async () => {
             if (!processing) {
                 processing = true;
                 servo.servoWrite(500);
-                await delay(100);
+                await delay(1000);
                 servo.servoWrite(1000);
                 await delay(1000);
                 processing = false;
@@ -29,3 +29,8 @@ trigger.addListener('interrupt', async () => {
         })
     ]);
 });
+
+trigger.enableInterrupt(gpio.Gpio.FALLING_EDGE);
+
+// tslint:disable-next-line:no-console
+console.log('ready');
