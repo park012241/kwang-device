@@ -14,23 +14,16 @@ let processing = false;
 
 trigger.addListener('interrupt', async () => {
     await Promise.all([
-        (async () => {
+        async () => {
             if (!processing) {
                 processing = true;
-                try {
-                    servo.servoWrite(500);
-                    await delay(100);
-                    servo.servoWrite(1000);
-                    await delay(100);
-                    servo.servoWrite(0);
-                } catch (e) {
-                    // tslint:disable-next-line:no-console
-                    console.error(e);
-                }
+                servo.servoWrite(500);
+                await delay(100);
+                servo.servoWrite(1000);
                 await delay(1000);
                 processing = false;
             }
-        }),
+        },
         axios.post<undefined>('https://kwang-server.herokuapp.com/newKwang', {
             deviceId: 'TEST',
         })
