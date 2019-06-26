@@ -16,7 +16,7 @@ trigger.addListener('interrupt', async () => {
     if (!processing) {
         processing = true;
         servo.servoWrite(500);
-        await delay(1000);
+        await delay(100);
         servo.servoWrite(1000);
         await delay(1000);
         processing = false;
