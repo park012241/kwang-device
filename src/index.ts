@@ -11,8 +11,9 @@ process.on('exit', () => {
 
 trigger.addListener('interrupt', async () => {
     try {
+        servo.servoWrite(800);
         servo.servoWrite(1000);
-        servo.servoWrite(1500);
+        servo.servoWrite(0);
     } catch (e) {
         // tslint:disable-next-line:no-console
         console.error(e);
