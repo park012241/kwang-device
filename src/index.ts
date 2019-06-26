@@ -13,21 +13,17 @@ servo.servoWrite(1000);
 let processing = false;
 
 trigger.addListener('interrupt', async () => {
-    await Promise.all([
-        async () => {
-            if (!processing) {
-                processing = true;
-                servo.servoWrite(500);
-                await delay(1000);
-                servo.servoWrite(1000);
-                await delay(1000);
-                processing = false;
-            }
-        },
-        axios.post<undefined>('https://kwang-server.herokuapp.com/newKwang', {
-            deviceId: 'TEST',
-        })
-    ]);
+    if (!processing) {
+        processing = true;
+        servo.servoWrite(500);
+        await delay(1000);
+        servo.servoWrite(1000);
+        await delay(1000);
+        processing = false;
+    }
+    await axios.post<undefined>('https://kwang-server.herokuapp.com/newKwang', {
+        deviceId: 'TEST',
+    });
 });
 
 trigger.enableInterrupt(gpio.Gpio.FALLING_EDGE);
