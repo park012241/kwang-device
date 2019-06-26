@@ -1,5 +1,6 @@
 import axios from 'axios';
 import gpio from 'pigpio';
+import {exit} from 'process';
 import {servo, trigger} from './pin';
 
 const delay = (ms: number) => {
@@ -12,7 +13,9 @@ gpio.initialize();
 gpio.configureClock(1, gpio.CLOCK_PWM);
 
 process.on('exit', gpio.terminate);
-process.on('SIGINT', gpio.terminate);
+process.on('SIGINT', () => {
+    exit();
+});
 
 servo.servoWrite(1000);
 
