@@ -21,8 +21,9 @@ trigger.addListener('interrupt', async () => {
         await delay(900);
         processing = false;
     }
-    await axios.post<undefined>('https://kwang-server.herokuapp.com/newKwang', {
+    await axios.put<undefined>('https://kwang-server.herokuapp.com/kwang', {
         deviceId: 'TEST',
+        timestamp: (new Date()).getTime(),
     });
 });
 
