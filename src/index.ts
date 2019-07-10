@@ -18,13 +18,13 @@ trigger.addListener('interrupt', async () => {
         servo.servoWrite(500);
         await delay(100);
         servo.servoWrite(1000);
-        await delay(900);
+        await delay(800);
+        await axios.put<undefined>('https://kwang-server.herokuapp.com/kwang', {
+            deviceId: 'TEST',
+            timestamp: (new Date()).getTime(),
+        });
         processing = false;
     }
-    await axios.put<undefined>('https://kwang-server.herokuapp.com/kwang', {
-        deviceId: 'TEST',
-        timestamp: (new Date()).getTime(),
-    });
 });
 
 trigger.enableInterrupt(gpio.Gpio.FALLING_EDGE);
