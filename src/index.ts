@@ -19,11 +19,11 @@ trigger.addListener('interrupt', async () => {
         await delay(100);
         servo.servoWrite(1000);
         await delay(800);
+        processing = false;
         await axios.put<undefined>('https://kwang-server.herokuapp.com/kwang', {
             deviceId: 'TEST',
             timestamp: (new Date()).getTime(),
         });
-        processing = false;
     }
 });
 
