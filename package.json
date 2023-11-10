@@ -21,7 +21,7 @@
   "homepage": "https://github.com/park012241/kwang-device#readme",
   "dependencies": {
     "pigpio": "^1.2.2",
-    "axios": "^0.19.0"
+    "axios": "^1.6.0"
   },
   "devDependencies": {
     "typescript": "^3.5.1",
